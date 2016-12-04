@@ -265,7 +265,6 @@ DATO NOMBRE QUE COINCIDA
   return indice;
 }
  
- 
  public static void main(String args[])throws IOException{
     /**
      * pruebas para clase lista

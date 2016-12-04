@@ -41,7 +41,6 @@ public class inseption {
     public void imprimir(){
      Nodolista aux=tablas.iniciolista; 
      Nodo l=null;
-     Nodo n=null;
      while(aux!=null){
      System.out.println("\nTABLA :"+aux.getNombre());
      l=aux.getLista().inicio;
@@ -55,7 +54,72 @@ public class inseption {
      }
      //tablas.recorrerlista();
     }
+    /*
+    METODO EL CUAL VACIA EN UN ARREGLO LOS DATOS DE LAS  LISTAS 
+    PARA SU ORDENACION
+    */
+    public String[][] vaciar(String tabla){
+    Nodolista aux=tablas.buscartabla(tabla); 
+    Nodo l=aux.getLista().inicio;
+    String datos[][]=new String [l.getLista().size()+1][aux.getLista().size()];
+    int cam=0;int dat=1;
+    Nodo d=null;
+    System.out.println("\nTABLA :"+aux.getNombre());
     
+    while(l!=null){
+    //System.out.print("\ncampo :"+l.getDato());
+        datos[0][cam]=(String) l.getDato();
+        d=l.getLista().inicio;
+        while(d!=null){
+         //System.out.print("  dato :"+d.getDato());
+         datos[dat][cam]=(String)d.getDato();
+         d=d.getSiguiente();
+         dat++;
+      }
+      l=l.getSiguiente();
+      cam++;
+      dat=1;
+     }
+    //System.out.println(); 
+    for (int i = 0; i <datos.length; i++) { 
+            for (int j = 0; j <datos[i].length; j++) {
+                System.out.print(datos[i][j] + " ");
+            }
+         System.out.println();
+    }
+    return datos;
+    }
+    /*
+    METODO QUE REGRESA EL NOMBRE DE LAS LISTAS EN UN ARREGLO
+    */
+    public String[] rtablas(){
+     Nodolista aux=tablas.iniciolista;
+     String tab[]=new String[tablas.size()];
+     int cont=0;
+     while(aux!=null){
+     System.out.println("\nTABLA :"+aux.getNombre());
+     tab[cont]=aux.getNombre();
+     aux=aux.getSiguiente();
+     cont++;
+     }
+     return tab;
+    }
+    /*
+    METODO QUE REGRESA LOS CAMPOS EN UN String
+    */
+    public String[] rcampos(String tabla){
+     Nodolista aux=tablas.buscartabla(tabla);
+     Nodo l=aux.getLista().inicio;
+     String tab[]=new String[aux.getLista().size()];
+     int cont=0;
+     while(l!=null){
+     System.out.println("\ncampo :"+l.getDato());
+     tab[cont]=(String) l.getDato();
+     l=l.getSiguiente();
+     cont++;
+     }
+     return tab;
+    }
     /*
     METODO PARA ELIMINAR UNA TABLA
     */
@@ -94,7 +158,7 @@ public class inseption {
     base.agregarcampo("id");
     base.agregarcampo("edad");
     base.agregarcampo("sexo");
-    base.creartabla("");
+    base.creartabla("alumno");
     
     base.agregarcampo("nombre");
     base.agregarcampo("id");
@@ -103,13 +167,17 @@ public class inseption {
     base.creartabla("profesor");
     
     //base.imprimir();
-    base.eliminartabla("alumno");
+    //base.eliminartabla("alumno");
    
     //base.agregardatos("alumno","nombre","reyna");
     //base.agregardatos("alumno","sexo","f");
+    //base.agregardatos("alumno","edad","20");
+    //base.agregardatos("alumno","id","12482");
     //base.agregardatos("alumno","casado","f");
     //base.agregardatos("profesor","casado","si");
-    base.imprimir();
+    //base.vaciar("alumno");
+    //base.rtablas();
+    base.rcampos("profesor");
     
  } 
 }
