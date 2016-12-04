@@ -264,7 +264,27 @@ DATO NOMBRE QUE COINCIDA
   //System.out.println(indice.getDato()+""+indice.getSiguiente().getDato());
   return indice;
 }
- 
+/*
+ METODO BUSCA Y ELIMINA
+ */
+ public void buscarydestruir(String cadena){
+ int cont =0;
+ Nodo aux=inicio;
+ boolean b=false;
+   while(cont<size){
+      int x=cadena.compareTo((String) aux.getDato());
+     if(x == 0){
+         eliminar(cont);
+         b=true;
+         }
+     aux=aux.getSiguiente();
+     cont++;
+   }
+  if(b==false){
+    System.out.println("\nNO EXISTE ESE CAMPO");
+  }
+  
+}
  public static void main(String args[])throws IOException{
     /**
      * pruebas para clase lista

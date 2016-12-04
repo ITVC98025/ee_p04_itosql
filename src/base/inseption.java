@@ -148,7 +148,16 @@ public class inseption {
      else{JOptionPane.showMessageDialog(null,"TABLA INEXISTENTE",
             "FALLO",JOptionPane.INFORMATION_MESSAGE);}
     } 
-    
+    /*
+    METODO ENCARGADO DE ELIMINAR CAMPOS DE LAS TABLAS
+    */
+    public void eliminarcampos(String tabla,String campo){
+     Nodolista aux=tablas.buscartabla(tabla);
+     aux.getLista().buscarydestruir(campo);
+     JOptionPane.showMessageDialog(null,"CAMPO "+campo+" ELIMINADO",
+            "EXITO",JOptionPane.INFORMATION_MESSAGE);
+     
+    }
    public static void main(String args[])throws IOException{
     /**
      * pruebas para clase lista
@@ -167,6 +176,8 @@ public class inseption {
     base.creartabla("profesor");
     
     //base.imprimir();
+    //base.eliminarcampos("profesor","id");
+    base.imprimir();
     //base.eliminartabla("alumno");
    
     //base.agregardatos("alumno","nombre","reyna");
@@ -177,7 +188,7 @@ public class inseption {
     //base.agregardatos("profesor","casado","si");
     //base.vaciar("alumno");
     //base.rtablas();
-    base.rcampos("profesor");
+    //base.rcampos("profesor");
     
  } 
 }

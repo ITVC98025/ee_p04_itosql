@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * @author alejandro
  */
 public class eliminar extends javax.swing.JFrame {
-    DefaultComboBoxModel modelotablas;
+    DefaultComboBoxModel modelotablas,modelocampos;
     /**
      * Creates new form eliminar
      */
@@ -45,10 +45,15 @@ public class eliminar extends javax.swing.JFrame {
         eliminatabla = new javax.swing.JButton();
         regresa = new javax.swing.JButton();
         ta = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        et = new javax.swing.JComboBox<>();
+        ec = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Tablas :");
         jLabel1.setPreferredSize(new java.awt.Dimension(38, 20));
 
@@ -66,6 +71,28 @@ public class eliminar extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Tabla :");
+        jLabel2.setPreferredSize(new java.awt.Dimension(38, 20));
+
+        et.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                etActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Campo :");
+        jLabel3.setPreferredSize(new java.awt.Dimension(38, 20));
+
+        jButton1.setText("Eliminar Campo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,17 +100,31 @@ public class eliminar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(eliminatabla))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(regresa)))
-                .addContainerGap(137, Short.MAX_VALUE))
+                        .addComponent(regresa))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(et, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ec, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,9 +135,17 @@ public class eliminar extends javax.swing.JFrame {
                     .addComponent(ta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(eliminatabla)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(et, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(regresa)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -104,6 +153,7 @@ public class eliminar extends javax.swing.JFrame {
 
     private void eliminatablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminatablaActionPerformed
      base.eliminartabla(ta.getSelectedItem().toString());
+     cargartablas();
     }//GEN-LAST:event_eliminatablaActionPerformed
    /*
     METODO ENCARGADO DE AÑADIR LAS TABLAS AL COMBO BOX
@@ -112,12 +162,27 @@ public class eliminar extends javax.swing.JFrame {
      String []tab=base.rtablas();
      modelotablas=new DefaultComboBoxModel(tab);
      ta.setModel(modelotablas);
+     et.setModel(modelotablas);
+    }
+    public void cargarcampos(){
+     String []camp=base.rcampos(ta.getSelectedItem().toString());
+     modelocampos=new DefaultComboBoxModel(camp);
+     ec.setModel(modelocampos);
     }
     private void regresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresaMouseClicked
         sql p=new sql();
        p.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_regresaMouseClicked
+
+    private void etActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etActionPerformed
+      cargarcampos();
+    }//GEN-LAST:event_etActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     base.eliminarcampos(et.getSelectedItem().toString(),ec.getSelectedItem().toString());
+     cargarcampos();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,8 +220,13 @@ public class eliminar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ec;
     private javax.swing.JButton eliminatabla;
+    private javax.swing.JComboBox<String> et;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton regresa;
     private javax.swing.JComboBox<String> ta;
     // End of variables declaration//GEN-END:variables
