@@ -157,37 +157,49 @@ public class inseption {
             "EXITO",JOptionPane.INFORMATION_MESSAGE);
      
     }
+    public String[][] prueba(){
+     String [][]t=new String [4][3];
+     t[0][0]="ID";t[0][1]="NOMBRE";t[0][2]="EDAD";
+     t[1][0]="423"; t[1][1]="PEDRO"; t[1][2]="13";
+     t[2][0]="3456";t[2][1]="GINA";t[2][2]="34";
+     t[3][0]="6345";t[3][1]="VALE";t[3][2]="1";
+     return t;
+    }
+    /*
+    METODO que regresa los nombres de los campos
+    */
+    public Listasimple regresacampos(String [][]dat){
+    Listasimple campos=new Listasimple();
+    for(int d=0;d<dat[0].length;d++){
+      campos.agregarfinal(dat[0][d]);
+    }
+    campos.recorrer();
+    System.out.println();
+    return campos;
+    } 
+    /*
+    METODO QUE REGRESA TODOS LOS DATOS CONCATENADOS EN LISTAS
+    String [][]dat
+    */
+    public Listasimple regresadatos(String [][]dat){   
+    Listasimple datos=new Listasimple();
+    for(int d=1;d<dat.length;d++){
+        for(int j=0;j<dat[d].length;j++)
+        {
+          datos.agregarfinal(dat[d][j]);
+        }
+    }
+    datos.recorrer();
+    return datos;
+    } 
+   
    public static void main(String args[])throws IOException{
     /**
      * pruebas para clase lista
      */
     inseption base=new inseption();
-    base.agregarcampo("nombre");
-    base.agregarcampo("id");
-    base.agregarcampo("edad");
-    base.agregarcampo("sexo");
-    base.creartabla("alumno");
-    
-    base.agregarcampo("nombre");
-    base.agregarcampo("id");
-    base.agregarcampo("edad");
-    base.agregarcampo("sexo");
-    base.creartabla("profesor");
-    
-    //base.imprimir();
-    //base.eliminarcampos("profesor","id");
-    base.imprimir();
-    //base.eliminartabla("alumno");
-   
-    //base.agregardatos("alumno","nombre","reyna");
-    //base.agregardatos("alumno","sexo","f");
-    //base.agregardatos("alumno","edad","20");
-    //base.agregardatos("alumno","id","12482");
-    //base.agregardatos("alumno","casado","f");
-    //base.agregardatos("profesor","casado","si");
-    //base.vaciar("alumno");
-    //base.rtablas();
-    //base.rcampos("profesor");
+    //base.regresacampos();
+    //base.regresadatos();
     
  } 
 }

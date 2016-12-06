@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,7 +17,8 @@ import javax.swing.table.DefaultTableModel;
  * @author alejandro
  */
 public class mostrar extends javax.swing.JFrame {
-DefaultComboBoxModel modelotablas;
+DefaultComboBoxModel modelotablas,modelocampos;
+ordenar order= new ordenar();
 int z=0;
     /**
      * Creates new form mostrar
@@ -47,8 +49,10 @@ int z=0;
         jScrollPane1 = new javax.swing.JScrollPane();
         tablas = new javax.swing.JTable();
         combot = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ordenar = new javax.swing.JButton();
+        metodos = new javax.swing.JComboBox<>();
+        combocampos = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,14 +80,22 @@ int z=0;
         ));
         jScrollPane1.setViewportView(tablas);
 
-        jButton3.setText("ORDENAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        combot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                combotActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quick Sort", "Burbuja", "Baraja", "Shaky Sort" }));
+        ordenar.setText("ORDENAR");
+        ordenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ordenarActionPerformed(evt);
+            }
+        });
+
+        metodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quick Sort", "Burbuja", "Sharker", "SeleccionD", "InsercionB" }));
+
+        jLabel1.setText("Campo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,9 +114,13 @@ int z=0;
                 .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combocampos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(metodos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ordenar)
                 .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
@@ -116,8 +132,10 @@ int z=0;
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ordenar)
+                    .addComponent(metodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combocampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -167,13 +185,43 @@ int z=0;
          //System.out.println();
     }
     }
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenarActionPerformed
+        //RECIBE TODO LO NECESARIO PARA ORDENAR
+        String [][] tabla=base.vaciar(combot.getSelectedItem().toString());
+        Listasimple campos=base.regresacampos(tabla);
+        Listasimple datos=base.regresadatos(tabla);
+        String d[]=order.crearMatriz(campos,datos,combocampos.getSelectedItem().toString(),metodos.getSelectedItem().toString());
+        String n[]=order.crearTN(campos,combocampos.getSelectedItem().toString());
+        refreshTable(n,d);
+        
+    }//GEN-LAST:event_ordenarActionPerformed
+    public void refreshTable(String [] titulo, String [] datos){
+        String [] encabezado = titulo;
+        DefaultTableModel modelo = new DefaultTableModel(encabezado,0);
+        tablas.setModel(new DefaultTableModel());
+        for(int i=0;i<datos.length;i++){
+        String palabra = datos[i];
+        String [] array = palabra.split(",");
+        Object [] d = array;
+        modelo.addRow(d);
+       }
+        tablas.setModel(modelo);
+    }
+
+
+   
+    private void combotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combotActionPerformed
+       cargarcampos();
+    }//GEN-LAST:event_combotActionPerformed
     public void cargartablas(){
      String []tab=base.rtablas();
      modelotablas=new DefaultComboBoxModel(tab);
      combot.setModel(modelotablas);
+    }
+    public void cargarcampos(){
+     String []camp=base.rcampos(combot.getSelectedItem().toString());
+     modelocampos=new DefaultComboBoxModel(camp);
+     combocampos.setModel(modelocampos);
     }
     /**
      * @param args the command line arguments
@@ -211,12 +259,14 @@ int z=0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> combocampos;
     private javax.swing.JComboBox<String> combot;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> metodos;
+    private javax.swing.JButton ordenar;
     private javax.swing.JTable tablas;
     // End of variables declaration//GEN-END:variables
 }

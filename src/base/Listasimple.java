@@ -285,6 +285,19 @@ DATO NOMBRE QUE COINCIDA
   }
   
 }
+ /*
+ METODO DE DIEGO 
+ */
+ public String transString(){
+	    Nodo<T> temporal = inicio;
+    	String s = "";
+    	while(temporal != null){
+    		s += temporal.getDato() + ",";
+    		temporal = temporal.getSiguiente();
+    	}
+    	s += "null";
+		return s;
+	}
  public static void main(String args[])throws IOException{
     /**
      * pruebas para clase lista

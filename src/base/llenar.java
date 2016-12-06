@@ -153,7 +153,7 @@ public class llenar extends javax.swing.JFrame {
         //datos[0]=ta.getSelectedItem().toString();
         //datos[1]=ca.getSelectedItem().toString();
         //datos[2]=ddato.getText();
-        //ddato.setText(null);
+        ddato.setText(null);
         //modelo.addRow(datos);
         //data.setModel(modelo);
         mostrarmatriz();
