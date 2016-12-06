@@ -10,12 +10,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author alejandro
  */
 public class mostrar extends javax.swing.JFrame {
 DefaultComboBoxModel modelotablas;
+int z=0;
     /**
      * Creates new form mostrar
      */
@@ -133,9 +135,38 @@ DefaultComboBoxModel modelotablas;
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      base.imprimir();       
+      mostrarmatriz();      
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public String[][] prueba(){
+     String [][]t=new String [4][3];
+     t[0][0]="ID";t[0][1]="NOMBRE";t[0][2]="EDAD";
+     t[1][0]="423"; t[1][1]="PEDRO"; t[1][2]="13";
+     t[2][0]="3456";t[2][1]="GINA";t[2][2]="34";
+     t[3][0]="6345";t[3][1]="VALE";t[3][2]="1";
+     return t;
+    }
+    
+    public void mostrarmatriz(){
+     DefaultTableModel model = (DefaultTableModel)tablas.getModel();
+     String [][]t=base.vaciar(combot.getSelectedItem().toString());
+     //String[][] t=prueba();
+     model.setRowCount(t.length);
+     //model.setColumnCount(t[0].length);
+     if(z==0){
+     for(int d=0;d<t[0].length;d++){
+      model.addColumn(t[0][d]);
+      z++;
+     }
+     }
+     //model.addColumn("TABLA");
+     for (int i = 1; i <t.length; i++) { 
+            for (int j = 0; j <t[i].length; j++) {
+                //System.out.print(datos[i][j] + " ");
+                tablas.setValueAt(t[i][j], i-1, j);
+            }
+         //System.out.println();
+    }
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed

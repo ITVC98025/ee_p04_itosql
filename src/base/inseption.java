@@ -81,12 +81,12 @@ public class inseption {
       dat=1;
      }
     //System.out.println(); 
-    for (int i = 0; i <datos.length; i++) { 
-            for (int j = 0; j <datos[i].length; j++) {
-                System.out.print(datos[i][j] + " ");
-            }
-         System.out.println();
-    }
+    //for (int i = 0; i <datos.length; i++) { 
+            //for (int j = 0; j <datos[i].length; j++) {
+                //System.out.print(datos[i][j] + " ");
+            //}
+         //System.out.println();
+    //}
     return datos;
     }
     /*
@@ -139,8 +139,7 @@ public class inseption {
      Nodo l=aux.getLista().buscarcadena(campo);
      if(l!=null){
      l.getLista().agregarfinal(dato);
-     JOptionPane.showMessageDialog(null,"DATO AGREGADO",
-            "EXITO",JOptionPane.INFORMATION_MESSAGE);
+     
      }
      else{JOptionPane.showMessageDialog(null,"CAMPO INEXISTENTE",
             "FALLO",JOptionPane.INFORMATION_MESSAGE);}
